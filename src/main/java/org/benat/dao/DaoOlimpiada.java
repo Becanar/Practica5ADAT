@@ -14,16 +14,21 @@ public class DaoOlimpiada {
 	db.store(o);	
 	}
 
-	public static List<ModeloOlimpiada> conseguirPorTemporada(String temporada,ObjectContainer db){
-		List<ModeloOlimpiada> olimpiadas=db.query(new Predicate<ModeloOlimpiada>() {
-
+	public static List<ModeloOlimpiada> conseguirPorTemporada(String temporada, ObjectContainer db) {
+		List<ModeloOlimpiada> olimpiadas = db.query(new Predicate<ModeloOlimpiada>() {
 			@Override
 			public boolean match(ModeloOlimpiada o) {
 				return o.getTemporada().equals(temporada);
 			}
 		});
+
+		System.out.println("Olimpiadas encontradas: " + olimpiadas.size());
+		for (ModeloOlimpiada olimpiada : olimpiadas) {
+			System.out.println("Edición encontrada: " + olimpiada.getNombre());
+		}
 		return olimpiadas;
 	}
+
 
 	public static ModeloOlimpiada conseguirPorNombre(String nombre, ObjectContainer db) {
 		ModeloOlimpiada dep=new ModeloOlimpiada();
